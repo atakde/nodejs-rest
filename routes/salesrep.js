@@ -44,8 +44,8 @@ router.get("/", async (request, response) => {
 
         responseArr.push({
           region: key,
-          minSalesReq: minSalesReq,
-          maxSalesReq: maxSalesReq,
+          minSalesReq,
+          maxSalesReq,
         });
       }
     } else {
