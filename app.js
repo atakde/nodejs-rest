@@ -14,7 +14,9 @@ app.use(cors());
 
 // Routes
 const countriesRoute = require("./routes/countries");
+const salesRepRoute = require("./routes/salesrep");
 app.use("/countries", countriesRoute);
+app.use("/salesRep", salesRepRoute);
 
 // Handle not found
 app.use((req, res, next) => {
