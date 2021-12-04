@@ -25,10 +25,27 @@ router.get("/", async (request, response) => {
       });
 
       for (let key in regions) {
+        let maxSalesReq = 1;
+        let minSalesReq = 1;
+
+        if (regions[key] > 3) {
+          maxSalesReq =
+            regions[key] % 3 !== 0
+              ? parseInt(regions[key] / 3) + 1
+              : regions[key] / 3;
+        }
+
+        if (regions[key] > 7) {
+          minSalesReq =
+            regions[key] % 7 !== 0
+              ? parseInt(regions[key] / 7) + 1
+              : regions[key] / 7;
+        }
+
         responseArr.push({
           region: key,
-          minSalesReq: regions[key] > 7 ? Math.round(regions[key] / 7) + 1 : 1,
-          maxSalesReq: regions[key] > 3 ? Math.round(regions[key] / 3) : 1,
+          minSalesReq: minSalesReq,
+          maxSalesReq: maxSalesReq,
         });
       }
     } else {
