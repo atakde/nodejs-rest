@@ -1,8 +1,6 @@
-const express = require("express");
-const router = express.Router();
 const axios = require("axios");
 
-router.get("/", async (request, response) => {
+exports.getSalesRepresentorCounts = async (request, response, next) => {
   try {
     let responseArr = [];
     const countriesData = await axios
@@ -52,14 +50,7 @@ router.get("/", async (request, response) => {
       throw new Error("Empty country data.");
     }
     response.json(responseArr);
-  } catch (err) {
-    response.status(err.status || 500).send({
-      error: {
-        status: err.status || 500,
-        message: err.message || "Internal Server Error.",
-      },
-    });
+  } catch (error) {
+    next(error);
   }
-});
-
-module.exports = router;
+};
